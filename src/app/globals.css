@@ -10,5 +10,6 @@ body, input, button, textarea, select {
 }
 
 body {
-  background-color: #121214
+  background-color: #121214;
+  color: #A8A8B3
 }
