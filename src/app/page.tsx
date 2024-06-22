@@ -1,14 +1,18 @@
+"use client";
+import React from "react";
 import Image from "next/image";
 import LogoImg from "../assets/logo-rocketseat.svg";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
+import * as Dialog from "@radix-ui/react-dialog";
 
 export default function Home() {
+
   return (
     <>
-    <Head>
-      <title>Desenvolvendo uma web acessível | Rocketseat Blog </title>
-    </Head>
+      <Head>
+        <title>Desenvolvendo uma web acessível | Rocketseat Blog </title>
+      </Head>
       <header className={styles.header}>
         {/* Descreva no alt o que a imagem quer passar, não descrever literalmente como ela é */}
         {/* Não precisar inicar o alt com "Imagem da logo..." normalmente leitores de tela já informar que é uma imagem */}
@@ -65,6 +69,36 @@ export default function Home() {
           <h3>O que é acessibilidade, afinal?</h3>
         </article>
       </main>
+
+      <footer className={styles.footer}>
+        <Image src={LogoImg} width={286 / 2} alt="Blog da Rocketseat" />
+
+        <nav className={styles.nav} aria-label="Rodapé">
+          {/* com o aria-controls o botão fica conectadop de forma acessivel ao modal */}
+
+          <Dialog.Root>
+            <Dialog.Trigger asChild>
+              <button type="button">
+                Termos de uso
+              </button>
+            </Dialog.Trigger>
+            <Dialog.Portal>
+              <Dialog.Overlay className={styles.overlay}/>
+              <Dialog.Content className={styles.modal}>
+                <Dialog.Title>Termos de uso</Dialog.Title>
+                <Dialog.Description>
+                  Esses são os termos de uso
+                </Dialog.Description>
+                <Dialog.Close asChild>
+                <button type="button" className={styles.closeModalButton}>
+               Fechar
+              </button>
+                </Dialog.Close>
+              </Dialog.Content>
+            </Dialog.Portal>
+          </Dialog.Root>
+        </nav>
+      </footer>
     </>
   );
 }
